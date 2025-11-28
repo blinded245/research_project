@@ -1,0 +1,15 @@
+# Core dependencies
+numpy
+networkx
+pybullet
+compas>=2.0
+compas_robots
+compas_fab
+
+# Fabrication control dependencies
+
+
+# Optional dependencies for Rhino/Grasshopper environments
+# Uncomment if needed:
+# compas_rhino
+# compas_ghpython
