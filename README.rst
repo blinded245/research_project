@@ -17,7 +17,7 @@ Research Project [BLINDED]
 Overview
 --------
 
-**Research Project [BLINDED]** is a Python-based framework designed for advanced motion planning and collision checking in robotic systems.
+**Research Project [BLINDED]** is a Python-based framework designed for redundant motion planning and collision checking in mobile robotic systems.
 
 
 For the scope of this blinded repository, the functionality is limited to motion planning and collision checking for robotic arms. Other functionality like integration into design environments or fabrication planning and hardware control has been omitted, since they could not be provided in a standalone blinded form.
