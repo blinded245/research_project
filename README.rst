@@ -31,8 +31,13 @@ Main Features
 Usage
 -----
 
-Input Data Structure
-~~~~~~~~~~~~~~~~~~~~
+Input Data
+~~~~~~~~~~
+
+The pipeline requires several types of input data in specific locations:
+
+Configuration Solutions (Required)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The collision checker requires a JSON file containing robot configurations structured as a 3-layer nested list:
 
@@ -55,9 +60,105 @@ The collision checker requires a JSON file containing robot configurations struc
         ...
     ]
 
-**Expected file location**: ``data/auto_generated/export/<timestamp>_solutions.json``
+**Expected location**: ``data/auto_generated/export/<timestamp>_solutions.json``
 
-Example: ``data/auto_generated/export/251117_163017_solutions.json``
+**Example**: ``data/auto_generated/export/251117_163017_solutions.json``
+
+Metadata (Optional)
+^^^^^^^^^^^^^^^^^^^
+
+A JSON file containing metadata about the solutions and target frames.
+
+**Expected location**: ``data/auto_generated/export/<timestamp>_metadata.json``
+
+**Example**: ``data/auto_generated/export/251117_163017_metadata.json``
+
+Target planes (for reference) (Optional)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+JSON file containing plane definitions or reference geometry for the task.
+
+**Expected location**: ``data/auto_generated/export/<timestamp>_planes.json``
+
+**Example**: ``data/auto_generated/export/251117_163017_planes.json``
+
+Collision Environment Meshes (Required for collision checking)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Mesh files defining obstacles and environment geometry for collision detection.
+
+**Expected location**: ``data/auto_generated/collision_temp/``
+
+**File formats**: ``.obj`` files
+
+**Note**: These files are loaded by the collision checker and should represent walls, obstacles, and other environment boundaries that the robot must avoid.
+
+Robot Base Meshes (Required for collision checking)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Visual and collision meshes for the robot base and links.
+
+**Expected location**: ``data/URDF/ur20/``
+
+**Subdirectories**:
+
+* ``data/URDF/ur20/visual/`` - Visual mesh files (``.dae``, ``.obj``)
+* ``data/URDF/ur20/collision/`` - Collision mesh files (``.stl``)
+
+**Included meshes**: base, shoulder, upperarm, forearm, wrist1, wrist2, wrist3
+
+Complete Directory Structure
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    data/
+    ├── URDF/
+    │   ├── ur20_tool_90deg.urdf          # Robot model with tool
+    │   └── ur20/
+    │       ├── visual/                   # Robot link visualizations
+    │       │   ├── base.dae
+    │       │   ├── shoulder.dae
+    │       │   ├── upperarm.dae
+    │       │   ├── forearm.dae
+    │       │   ├── wrist1.dae
+    │       │   ├── wrist2.dae
+    │       │   └── wrist3.dae
+    │       └── collision/                # Robot link collision meshes
+    │           ├── base.stl
+    │           ├── shoulder.stl
+    │           ├── upperarm.stl
+    │           ├── forearm.stl
+    │           ├── wrist1.stl
+    │           ├── wrist2.stl
+    │           └── wrist3.stl
+    │
+    ├── tool_geometry/                    # Tool definition meshes
+    │   ├── abele/
+    │   │   └── split_90deg/
+    │   │       ├── 250213_attachment.stl
+    │   │       ├── 250213_clamp1.stl
+    │   │       ├── 250213_clamp2.stl
+    │   │       ├── 250213_clamp3.stl
+    │   │       ├── 250213_motor.stl
+    │   │       ├── 250213_90deg.stl
+    │   │       └── ... (more tool parts)
+    │   └── (other tool geometries)
+    │
+    └── auto_generated/
+        ├── export/                       # Input configuration files (from Grasshopper)
+        │   ├── <timestamp>_solutions.json
+        │   ├── <timestamp>_metadata.json
+        │   └── <timestamp>_planes.json
+        │
+        ├── collision_temp/               # Environment collision meshes
+        │   ├── 0.obj
+        │   ├── 1.obj
+        │   └── ... (obstacle meshes)
+        │
+        └── planned_motion/               # Output motion planning results
+            ├── <timestamp>_collision_free_solutions.json
+            └── <timestamp>_shortest_path.json
 
 Running the Complete Pipeline
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
