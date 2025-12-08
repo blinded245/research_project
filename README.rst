@@ -36,8 +36,12 @@ Input Data
 
 The pipeline requires several types of input data in specific locations:
 
-Configuration Solutions (Required)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* **Configuration Solutions** - Robot joint angle configurations for each target pose
+* **Metadata** - Information about solutions and target frames  
+* **Collision Environment Meshes** - Obstacle and environment geometry file
+
+• Configuration Solutions (Required)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The collision checker requires a JSON file containing robot configurations structured as a 3-layer nested list:
 
@@ -64,8 +68,8 @@ The collision checker requires a JSON file containing robot configurations struc
 
 **Example**: ``data/auto_generated/export/251117_163017_solutions.json``
 
-Metadata (Optional)
-^^^^^^^^^^^^^^^^^^^
+• Metadata (Optional)
+^^^^^^^^^^^^^^^^^^^^
 
 A JSON file containing metadata about the solutions and target frames.
 
@@ -73,8 +77,8 @@ A JSON file containing metadata about the solutions and target frames.
 
 **Example**: ``data/auto_generated/export/251117_163017_metadata.json``
 
-Target planes (for reference) (Optional)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+• Target planes (for reference) (Optional)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 JSON file containing plane definitions or reference geometry for the task.
 
@@ -82,8 +86,8 @@ JSON file containing plane definitions or reference geometry for the task.
 
 **Example**: ``data/auto_generated/export/251117_163017_planes.json``
 
-Collision Environment Meshes (Required for collision checking)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+• Collision Environment Meshes (Required for collision checking)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Mesh files defining obstacles and environment geometry for collision detection.
 
@@ -93,22 +97,8 @@ Mesh files defining obstacles and environment geometry for collision detection.
 
 **Note**: These files are loaded by the collision checker and should represent walls, obstacles, and other environment boundaries that the robot must avoid.
 
-Robot Base Meshes (Required for collision checking)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Visual and collision meshes for the robot base and links.
-
-**Expected location**: ``data/URDF/ur20/``
-
-**Subdirectories**:
-
-* ``data/URDF/ur20/visual/`` - Visual mesh files (``.dae``, ``.obj``)
-* ``data/URDF/ur20/collision/`` - Collision mesh files (``.stl``)
-
-**Included meshes**: base, shoulder, upperarm, forearm, wrist1, wrist2, wrist3
-
-Complete Directory Structure
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+• Complete Directory Structure
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ::
 
