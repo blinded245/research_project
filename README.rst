@@ -197,6 +197,12 @@ Install directly from GitHub without cloning::
 
     pip install git+https://github.com/blindmenow/research_project
 
+After installation , you can test if the package is correctly installed by running::
+git clone https://github.com/blindmenow/research_project.git
+cd research_project
+python src/research_project/utilities/run_all.py 
+this should run the complete pipeline on the provided test data without errors (there will be some fallback messages if you are not connected to a robot, which is expected).
+
 Dependencies
 ~~~~~~~~~~~~
 
