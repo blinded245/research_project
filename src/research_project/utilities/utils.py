@@ -136,9 +136,15 @@ def get_data_path():
     """
     import os
     if "ghdoc" in locals():
+        print("getting data path from ghdoc")
         package_path = ghdoc.Path  # noqa: F821
         package_path = os.path.abspath(os.path.join(package_path, ".."))
+    
+    if os.path.basename(os.getcwd()) == "redundant_motion_planning":
+        print("getting data path from cwd")
+        return os.path.join(os.getcwd(), "data")
     else:
+        print("getting data path from __file__")
         package_path = os.path.dirname(__file__)
         package_path = os.path.abspath(os.path.join(package_path, "../../../rhino"))
     data_path = os.path.abspath(os.path.join(package_path, "../data"))
