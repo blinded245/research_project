@@ -140,7 +140,7 @@ def get_data_path():
         package_path = ghdoc.Path  # noqa: F821
         package_path = os.path.abspath(os.path.join(package_path, ".."))
     
-    if os.path.basename(os.getcwd()) == "redundant_motion_planning":
+    if os.path.basename(os.getcwd()) == "research_project":
         print("getting data path from cwd")
         return os.path.join(os.getcwd(), "data")
     else:
